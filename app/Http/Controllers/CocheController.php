@@ -15,18 +15,18 @@ class CocheController extends Controller
      */
     public function index(Request $request)
     {
-        $hash = $request->header('Authorization',null);
+        $hash = $request->get('Authorization', null);
         $jwtAuth = new JwtAuth();
         $checkToken = $jwtAuth->checkToken($hash);
 
 
         if ($checkToken) {
-          echo "Index de CarController Entro".$checkToken; die();
-        }else {
-          echo "No entro: ".$checkToken.$hash; die();
-
+            echo "Index de CocheController Entro";
+            die();
+        } else {
+            echo "No entro ";
+            die();
         }
-
     }
 
     /**
