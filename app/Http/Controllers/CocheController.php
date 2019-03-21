@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Helpers\JwtAuth;
 
 class CocheController extends Controller
 {
@@ -11,9 +13,20 @@ class CocheController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        echo "Estoy en el index de CocheController";
+        $hash = $request->get('Authorization', null);
+        $jwtAuth = new JwtAuth();
+        $checkToken = $jwtAuth->checkToken($hash);
+
+
+        if ($checkToken) {
+            echo "Index de CocheController Entro";
+            die();
+        } else {
+            echo "No entro ";
+            die();
+        }
     }
 
     /**
